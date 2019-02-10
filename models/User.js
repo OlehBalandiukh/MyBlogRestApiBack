@@ -15,8 +15,9 @@ let UserSchema = new Schema({
     about: String,
     nickName: String,
     login: {
-        type: mongoose.SchemaTypes.Email,
-        required: true
+        type: mongoose.SchemaTypes.Email
+        //cant set required
+        //required: true
     },
     password: {
         type: String,
