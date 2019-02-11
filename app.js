@@ -1,13 +1,8 @@
 let mongoose = require('mongoose');
 let express = require('express');
 let session = require('express-session');
-let SiteRouter = require('./routes/site-router');
+let SiteRouter = require('./routes/site-router')
 
-
-let router = require('express').Router();
-let User = require('./models/User');
-
-let ApiRouter = require('./routes/api-router');
 
 mongoose.connect('mongodb://localhost:27017/RestBlog', {useNewUrlParser:true});
 
@@ -20,8 +15,6 @@ app.use(session({
     saveUninitialized: false
 }));
 
-
-app.use(ApiRouter);
 app.use(SiteRouter);
 
 app.listen(3000, ()=>{
