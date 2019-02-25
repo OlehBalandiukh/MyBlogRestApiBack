@@ -1,12 +1,20 @@
-let mongoose = require('mongoose');
-let express = require('express');
-let session = require('express-session');
-let SiteRouter = require('./routes/site-router')
+const mongoose = require('mongoose');
+const express = require('express');
+const session = require('express-session');
+const SiteRouter = require('./routes/site-router');
+const passport = require('passport');
 
+const app = express();
 
-mongoose.connect('mongodb://localhost:27017/RestBlog', {useNewUrlParser:true});
+//passport config
+require('./config/passport')(passport);
 
-let app = express();
+//DB config
+const db = require('./config/kays').MongoURI;
+
+//connect to mongo
+mongoose.connect(db, {useNewUrlParser:true});
+
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(session({
@@ -14,6 +22,10 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+
+//passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(SiteRouter);
 

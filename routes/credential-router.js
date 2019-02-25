@@ -1,5 +1,5 @@
-let router = require('express').Router();
-let CredentialController = require('../controllers/Credential-controller');
+const router = require('express').Router();
+const CredentialController = require('../controllers/Credential-controller');
 
 router.post('/register', CredentialController.register);
 router.post('/login', CredentialController.login);

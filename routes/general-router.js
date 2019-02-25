@@ -1,9 +1,9 @@
-let router = require('express').Router();
-let GeneralController = require('../controllers/general-controller');
+const router = require('express').Router();
+const GeneralController = require('../controllers/general-controller');
 
 router.get('/', GeneralController.index);
 
-//For future purpose
+//for future purpose
 router.get('/about', GeneralController.about);
 
 module.exports = router;
