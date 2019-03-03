@@ -1,8 +1,9 @@
-let mongoose = require('mongoose');
-let express = require('express');
-let session = require('express-session');
-let SiteRouter = require('./routes/site-router')
-
+const mongoose = require('mongoose');
+const express = require('express');
+const session = require('express-session');
+const SiteRouter = require('./routes/site-router')
+require ('./config/passport');
+const passport = require('passport');
 
 mongoose.connect('mongodb://localhost:27017/RestBlog', {useNewUrlParser:true});
 
@@ -14,7 +15,8 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
-
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(SiteRouter);
 
 app.listen(3000, ()=>{
